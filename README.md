@@ -5,8 +5,8 @@ A step-by-step guide on how to install and sign a Linux kernel to boot with Secu
 <!--ts-->
   * [Why](#why)
   * [How](#how)
-    * [Installing a Kernel](#Installing a Kernel)
-    * [Signing a Kernel for Secure Boot](#Signing a Kernel for Secure Boot)
+    * [Installing a Kernel](#Installing-a-Kernel)
+    * [Signing a Kernel for Secure Boot](#Signing-a-Kernel-for-Secure-Boot)
 <!--te-->
 
 # Why
