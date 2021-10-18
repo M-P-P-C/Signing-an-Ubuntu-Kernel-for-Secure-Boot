@@ -1,5 +1,7 @@
 # Signing a Linux Kernel for Secure Boot
-A step-by-step guide on how to install and sign a Linux kernel to boot with Secure Boot, because it shouldn't be so hard to have the latest drivers for your machine 
+A step-by-step guide on how to install and sign a Linux kernel to boot with Secure Boot, because it shouldn't be so hard to have the latest drivers for your machine.
+
+I do not guarantee this will work with your machine, so do it at your own risk. Although in a scenario in which the new kernel won't boot it should be possible to rollback to the working one.
 
 ## Table of contents
 <!--ts-->
@@ -31,7 +33,7 @@ In your directory of choice create a folder were you can place the files we'll h
 
 We can get the kernel files from [Ubuntu's Mainline repository](https://kernel.ubuntu.com/~kernel-ppa/mainline/?C=N;O=D), note that kernels that end with "-rcX" are "Release Candidate" builds that may not be as stable. For a 64-bit architecture (amd64) you can download the following 4 files:
 
-* linux-headers-<version-num>_all.deb
+* linux-headers-&ltversion-num&mt_all.deb
 * linux-headers-<version-num>_amd64.deb
 * linux-image-<version-num>_amd64.deb
 * linux-modules-<version-num>_amd64.deb
@@ -50,11 +52,10 @@ sudo dpkg -i *.deb
 ## Signing a Kernel for Secure Boot
 Once the kernel has been installed we can proceed to siging it for Secure Boot.
  
-In the same folder we used for installing the kernels, create a file and place the following text (you may also download the file from this repo [here](#here) if you want), and change the text inside "<>":
+In the same folder we used for installing the kernels, create a file named "**mokconfig.cnf**", place the following text, and change the text inside "<>": (you may also download the template file from [here](#here))
  
 <details>
-  <summary>Click to expand!</summary>
-
+  <summary>Click to view text for mokconfig.cnf</summary>
 ```
 # This definition stops the following lines failing if HOME isn't defined.
 HOME                    = .
@@ -66,7 +67,7 @@ string_mask             = utf8only
 prompt                  = no
 
 [ req_distinguished_name ]
-countryName             = **<YOURcountrycode>**
+countryName             = <YOURcountrycode>
 stateOrProvinceName     = <YOURstate>
 localityName            = <YOURcity>
 0.organizationName      = <YOURorganization>
@@ -81,6 +82,32 @@ extendedKeyUsage        = codeSigning,1.3.6.1.4.1.311.10.3.6
 nsComment               = "OpenSSL Generated Certificate"
 ```
 </details>
+ 
+within the same directory run the following command:
+
+```console
+ openssl req -config ./mokconfig.cnf \
+        -new -x509 -newkey rsa:2048 \
+        -nodes -days 36500 -outform DER \
+        -keyout "MOK.priv" \
+        -out "MOK.der"
+```
+to sign the kernel we also need to conver the key to PEM format:
+ 
+```console
+openssl x509 -in MOK.der -inform DER -outform PEM -out MOK.pem
+```
+
+Let's enroll our new MOK key:
+ 
+```console 
+sudo mokutil --import MOK.der
+```
+you'll be asked for a **password**
+ 
+```console 
+sudo sbsign --key MOK.priv --cert MOK.pem /boot/vmlinuz-[KERNEL-VERSION]-generic --output /boot/vmlinuz-[KERNEL-VERSION]-generic.signed
+```
  
 # Resources
 There are tools available that simplify the installation and management of Linux kernel in your machine, e.g. [Ukuu](https://teejeetech.in/2019/01/20/ukuu-v19-01/), its deprecated free version [Ukuu Github](https://github.com/teejee2008/ukuu), or its maintained open-source fork [Mainline](https://github.com/bkw777/mainline)
