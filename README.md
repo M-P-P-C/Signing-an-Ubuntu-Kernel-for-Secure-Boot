@@ -15,7 +15,7 @@ Hardware vendors, such as Intel, have started to disable features if Secure Boot
 I spent a long time trying to battle against Secure Boot not letting me install new kernels, because you need to sign them images yourself, and the guides I've found on how to do so tend to be aimed towards system administrators who know more than a general Linux user. So I decided to put a clear step-by-step guide because I think everyone deserves the latest Linux kernels.
 
 # How
-To cover the process beginning to end we'll separte it into two steps: installing a kernel, and signing it for Secure Boot
+To cover the process beginning to end we'll separate it into two steps: installing a kernel, and signing it for Secure Boot
 
 ## Installing a Kernel
 First check which kernel version you are currently using with:
@@ -41,11 +41,11 @@ sudo dpkg -i *.deb
 Here is a list of different sources I got this information from:
 
 Installing Ubuntu Kernels:
-https://itsfoss.com/upgrade-linux-kernel-ubuntu/
+ * https://itsfoss.com/upgrade-linux-kernel-ubuntu/
 
 Signing Kernel:
-https://ubuntu.com/blog/how-to-sign-things-for-secure-boot
-https://gloveboxes.github.io/Ubuntu-for-Azure-Developers/docs/signing-kernel-for-secure-boot.html
+ * https://ubuntu.com/blog/how-to-sign-things-for-secure-boot
+ * https://gloveboxes.github.io/Ubuntu-for-Azure-Developers/docs/signing-kernel-for-secure-boot.html
 
 
 ## Contributing
