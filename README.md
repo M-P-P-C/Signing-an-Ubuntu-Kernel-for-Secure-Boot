@@ -90,7 +90,7 @@ nsComment               = "OpenSSL Generated Certificate"
  
 within the same directory run the following command to create our MOK key:
 
-```console
+```bash
  openssl req -config ./mokconfig.cnf \
         -new -x509 -newkey rsa:2048 \
         -nodes -days 36500 -outform DER \
