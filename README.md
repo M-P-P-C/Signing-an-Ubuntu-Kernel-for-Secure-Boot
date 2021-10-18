@@ -7,6 +7,8 @@ A step-by-step guide on how to install and sign a Linux kernel to boot with Secu
   * [How](#how)
     * [Installing a Kernel](#Installing-a-Kernel)
     * [Signing a Kernel for Secure Boot](#Signing-a-Kernel-for-Secure-Boot)
+  * [Resources](#resources)
+  * [Contributing](#contributing)
 <!--te-->
 
 # Why
@@ -36,8 +38,8 @@ sudo dpkg -i *.deb
 ## Signing a Kernel for Secure Boot
 
 
-# References
-
+# Resources
+There are tools available that simplify the installation and management of Linux kernel in your machine, e.g. [Ukuu](https://teejeetech.in/2019/01/20/ukuu-v19-01/), it's free version [Ukuu Github](https://github.com/teejee2008/ukuu), or its maintained open-source fork [Mainline](https://github.com/bkw777/mainline)
 Here is a list of different sources I got this information from:
 
 Installing Ubuntu Kernels:
