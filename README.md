@@ -33,9 +33,10 @@ We can get the kernel files from [Ubuntu's Mainline repository](https://kernel.u
 * linux-headers-<version-num>_amd64.deb
 * linux-image-<version-num>_amd64.deb
 * linux-modules-<version-num>_amd64.deb
-
-![FIles to get for 64-bit architecture](media/Ubuntu-mainline-kernels.png?s=200)
-
+ 
+<p align="center">
+ <img src="media/Ubuntu-mainline-kernels.png" width="100" height="100" />
+</p>
 
 
 Put all the downloaded packages into a folder, then within that folder install the downloaded files with:
