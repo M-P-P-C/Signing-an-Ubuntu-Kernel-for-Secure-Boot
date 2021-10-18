@@ -9,6 +9,8 @@ I do not guarantee this will work with your machine, so do it at your own risk. 
   * [How](#how)
     * [Installing a Kernel](#Installing-a-Kernel)
     * [Signing a Kernel for Secure Boot](#Signing-a-Kernel-for-Secure-Boot)
+     * [Create a Key](#create-a-key) 
+     * [Signing the Kernel](#signing-the-kernel)
   * [Resources](#resources)
   * [Contributing](#contributing)
 <!--te-->
@@ -52,6 +54,8 @@ sudo dpkg -i *.deb
 ## Signing a Kernel for Secure Boot
 Once the kernel has been installed we can proceed to siging it for Secure Boot.
  
+### Create a Key
+ 
 In the same folder we used for installing the kernels, create a file named "**mokconfig.cnf**", place the following text, and change the text inside "<>": (you may also download the template file from [here](#here))
  
 <details>
@@ -84,7 +88,7 @@ nsComment               = "OpenSSL Generated Certificate"
 ```
 </details>
  
-within the same directory run the following command:
+within the same directory run the following command to create our MOK key:
 
 ```console
  openssl req -config ./mokconfig.cnf \
@@ -93,18 +97,23 @@ within the same directory run the following command:
         -keyout "MOK.priv" \
         -out "MOK.der"
 ```
-to sign the kernel we also need to conver the key to PEM format:
+ 
+to sign the kernel we need to convert the key to PEM format for "sbsign" to work with it:
  
 ```console
 openssl x509 -in MOK.der -inform DER -outform PEM -out MOK.pem
 ```
 
-Let's enroll our new MOK key:
+Let's enroll our new MOK key into our shim installation:
  
 ```console 
 sudo mokutil --import MOK.der
 ```
-you'll be asked for a **password**
+you'll be asked for a **password**, you'll need it after rebooting the computer.
+ 
+### Signing the Kernel
+
+Now that we have a key, we can sign the kernel images we installed before. We can do so with the following command, make sure to replace your installed version
  
 ```console 
 sudo sbsign --key MOK.priv --cert MOK.pem /boot/vmlinuz-[KERNEL-VERSION]-generic --output /boot/vmlinuz-[KERNEL-VERSION]-generic.signed
