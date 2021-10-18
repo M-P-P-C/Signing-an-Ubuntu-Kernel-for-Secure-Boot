@@ -56,7 +56,8 @@ In the same folder we used for installing the kernels, create a file named "**mo
  
 <details>
   <summary>Click to view text for mokconfig.cnf</summary>
-```
+ 
+```console
 # This definition stops the following lines failing if HOME isn't defined.
 HOME                    = .
 RANDFILE                = $ENV::HOME/.rnd 
