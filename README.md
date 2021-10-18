@@ -35,7 +35,7 @@ We can get the kernel files from [Ubuntu's Mainline repository](https://kernel.u
 * linux-modules-<version-num>_amd64.deb
  
 <p align="center">
- <img src="media/Ubuntu-mainline-kernels.png" width="100" height="100" />
+ <img src="media/Ubuntu-mainline-kernels.png" width="500" height="500" />
 </p>
 
 
