@@ -7,10 +7,10 @@ I do not guarantee this will work with your machine, so do it at your own risk. 
 <!--ts-->
   * [Why](#why)
   * [How](#how)
-    * [Installing a Kernel](#Installing-a-Kernel)
-    * [Signing a Kernel for Secure Boot](#Signing-a-Kernel-for-Secure-Boot)
-     * [Create a Key](#create-a-key) 
-     * [Signing the Kernel](#signing-the-kernel)
+    * [Installing a Kernel](#installing-a-kernel)
+    * [Signing a Kernel for Secure Boot](#signing-a-kernel-for-secure-boot)
+      * [Create a Key](#create-a-key) 
+      * [Signing the Kernel](#signing-the-kernel)
   * [Resources](#resources)
   * [Contributing](#contributing)
 <!--te-->
