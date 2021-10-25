@@ -3,6 +3,8 @@ A step-by-step guide on how to install and sign a Linux kernel to boot with Secu
 
 I do not guarantee this will work with your machine, so do it at your own risk. Although in a scenario in which the new kernel won't boot it should be possible to rollback to the working one.
 
+(This is currently a work in progress, so not all information is final and more will be added in the future)
+
 ## Table of contents
 <!--ts-->
   * [Why](#why)
