@@ -60,6 +60,10 @@ Once the kernel has been installed we can proceed to siging it for Secure Boot.
  
 In the same folder we used for installing the kernels, create a file named "**mokconfig.cnf**", place the following text, and change the text inside "<>": (you may also download the template file from [here](#here))
  
+```bash
+cat > mokconfig.cnf
+```
+ 
 <details>
   <summary>Click to view text for mokconfig.cnf</summary>
  
@@ -99,6 +103,8 @@ within the same directory run the following command to create our MOK key:
         -keyout "MOK.priv" \
         -out "MOK.der"
 ```
+
+IF IT RETURNS THE ERROR Can't load /home/USER/.rnd into RNG you may just run the command again as the .rng file was not in the specified location
  
 to sign the kernel we need to convert the key to PEM format for "sbsign" to work with it:
  
@@ -120,7 +126,18 @@ Now that we have a key, we can sign the kernel images we installed before. We ca
 ```console 
 sudo sbsign --key MOK.priv --cert MOK.pem /boot/vmlinuz-[KERNEL-VERSION]-generic --output /boot/vmlinuz-[KERNEL-VERSION]-generic.signed
 ```
+
+Before we commit to booting with the installed kernel we just signed, we'll test it out by restarting the computer and selecting it manually
  
+### Rebooting Computer To Complete Key Signature
+ 
+With all the necessary work done on Linux, we now need to approve the kernel signature within the SHIM environment
+ 
+ 
+### Changing Default Kernel
+ 
+ 
+
 # Resources
 There are tools available that simplify the installation and management of Linux kernel in your machine, e.g. [Ukuu](https://teejeetech.in/2019/01/20/ukuu-v19-01/), its deprecated free version [Ukuu Github](https://github.com/teejee2008/ukuu), or its maintained open-source fork [Mainline](https://github.com/bkw777/mainline)
 
