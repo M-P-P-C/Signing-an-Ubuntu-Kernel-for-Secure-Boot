@@ -135,7 +135,13 @@ With all the necessary work done on Linux, we now need to approve the kernel sig
  
  
 ### Changing Default Kernel
- 
+
+Once you have confirmed your installation is stable with the new kernel you may decide to make that the default boot option. To do so you can go back to the terminal and use the following line (replacing the information to fit the name of your signed kernel)
+
+```console
+sudo cp /boot/initrd.img-[KERNEL-VERSION]-generic{,.signed}
+```
+
  
 
 # Resources
