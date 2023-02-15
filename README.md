@@ -133,8 +133,30 @@ Before we commit to booting with the installed kernel we just signed, we'll test
  
 With all the necessary work done on Linux, we now need to approve the kernel signature within the SHIM environment
  
+<p align="center">
+    <img src="https://github.com/M-P-P-C/Signing-an-Ubuntu-Kernel-for-Secure-Boot/blob/update/media/MOK%20Management%20Screens_1.jpg?raw=true" width="40%" />
+</p>
  
-### Changing Default Kernel
+ <p align="center">
+    <img src="https://github.com/M-P-P-C/Signing-an-Ubuntu-Kernel-for-Secure-Boot/blob/update/media/MOK%20Management%20Screens_2.jpg?raw=true" width="40%" />
+</p>
+ 
+ <p align="center">
+    <img src="https://github.com/M-P-P-C/Signing-an-Ubuntu-Kernel-for-Secure-Boot/blob/update/media/MOK%20Management%20Screens_3.jpg?raw=true" width="40%" />
+</p>
+
+Then, type the password you defined at the end of the [Create a Key](#create-a-key) section:
+ 
+<p align="center">
+    <img src="https://github.com/M-P-P-C/Signing-an-Ubuntu-Kernel-for-Secure-Boot/blob/update/media/MOK%20Management%20Screens_4.jpg?raw=true" width="40%" />
+</p>
+
+Finally, reboot the computer and your signed kernel should work:
+<p align="center">
+    <img src="https://github.com/M-P-P-C/Signing-an-Ubuntu-Kernel-for-Secure-Boot/blob/update/media/MOK%20Management%20Screens_5.jpg?raw=true" width="40%" />
+</p>
+ 
+ ### Changing Default Kernel
 
 Once you have confirmed your installation is stable with the new kernel you may decide to make that the default boot option. To do so you can go back to the terminal and use the following line (replacing the information to fit the name of your signed kernel)
 
