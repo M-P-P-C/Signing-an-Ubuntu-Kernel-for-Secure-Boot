@@ -13,6 +13,7 @@ I do not guarantee this will work with your machine, so do it at your own risk. 
     * [Signing a Kernel for Secure Boot](#signing-a-kernel-for-secure-boot)
       * [Create a Key](#create-a-key) 
       * [Signing the Kernel](#signing-the-kernel)
+        * [Complete Key Signature in MOK management](#reboot-to-complete-key-signature)
   * [Resources](#resources)
   * [Contributing](#contributing)
 <!--te-->
@@ -127,11 +128,17 @@ Now that we have a key, we can sign the kernel images we installed before. We ca
 sudo sbsign --key MOK.priv --cert MOK.pem /boot/vmlinuz-[KERNEL-VERSION]-generic --output /boot/vmlinuz-[KERNEL-VERSION]-generic.signed
 ```
 
-Before we commit to booting with the installed kernel we just signed, we'll test it out by restarting the computer and selecting it manually
+Before we commit to booting by default with the installed kernel we just signed, we'll test it out by restarting the computer and selecting it manually. Run the following command:
+
+```console 
+sudo update-grub
+```
+
+and reboot your machine.
  
-### Rebooting Computer To Complete Key Signature
+### Reboot To Complete Key Signature
  
-With all the necessary work done on Linux, we now need to approve the kernel signature within the SHIM environment
+With all the necessary work done on Linux, we need to approve the kernel signature within the SHIM environment
  
 <p align="center">
     <img src="https://github.com/M-P-P-C/Signing-an-Ubuntu-Kernel-for-Secure-Boot/blob/update/media/MOK%20Management%20Screens_1.jpg?raw=true" width="40%" />
@@ -152,11 +159,14 @@ Then, type the password you defined at the end of the [Create a Key](#create-a-k
 </p>
 
 Finally, reboot the computer and your signed kernel should work:
+
 <p align="center">
     <img src="https://github.com/M-P-P-C/Signing-an-Ubuntu-Kernel-for-Secure-Boot/blob/update/media/MOK%20Management%20Screens_5.jpg?raw=true" width="40%" />
 </p>
+
+In the Grub menu, you will find your new kernel under "Advanced Options". Select it and, if everything worked well, you should be in your login screen. Test it out to make sure everything is stable. Once you have confirmed eveyrthing works as expected, you can move on to the next and final step.
  
- ### Changing Default Kernel
+ ### Changing Default Boot Kernel
 
 Once you have confirmed your installation is stable with the new kernel you may decide to make that the default boot option. To do so you can go back to the terminal and use the following line (replacing the information to fit the name of your signed kernel)
 
@@ -164,10 +174,15 @@ Once you have confirmed your installation is stable with the new kernel you may 
 sudo cp /boot/initrd.img-[KERNEL-VERSION]-generic{,.signed}
 ```
 
- 
+Finally, update your grub menu:
+
+```console 
+sudo update-grub
+```
+
 
 # Resources
-There are tools available that simplify the installation and management of Linux kernel in your machine, e.g. [Ukuu](https://teejeetech.in/2019/01/20/ukuu-v19-01/), its deprecated free version [Ukuu Github](https://github.com/teejee2008/ukuu), or its maintained open-source fork [Mainline](https://github.com/bkw777/mainline)
+Although I prefer the manual way, there are tools available that should simplify the installation and management of Linux kernels in your machine, e.g. [Ukuu](https://teejeetech.in/2019/01/20/ukuu-v19-01/), its deprecated free version [Ukuu Github](https://github.com/teejee2008/ukuu), or its maintained open-source fork [Mainline](https://github.com/bkw777/mainline)
 
 Here is a list of different sources I used in making this guide:
 
